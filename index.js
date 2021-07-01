@@ -4,20 +4,23 @@ const port = 5000
 const bodyParser = require('body-parser');
 const {User} = require("./models/User");
 
+const config = require('./config/key');
+
 //application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({extended:true}));
 //application/json
 app.use(bodyParser.json());
 
+//mongoDB 연결
 const mongoose = require('mongoose')
-mongoose.connect('mongodb+srv://chomjung:kan0905!@boilerplate.otqgk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',{
+mongoose.connect(config.mongoURI,{
     useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex:true,useFindAndModify:false
 }).then(()=>console.log("MongoDB Connected..."))
 .catch(err => console.log(err))
 
-
+//main화면에 띄우는 route
 app.get('/', (req, res) => {
-  res.send('Hello World!')
+  res.send('Hello World! ')
 })
 
 //회원가입을 위한 register route
