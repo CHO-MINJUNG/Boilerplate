@@ -27,7 +27,7 @@ app.post('/register',(req, res) => {
 
   const user = new User(req.body)
 
-  //mongoDB 메소드
+  //mongoDB의 메소드
   //위 req.body 정보들이 user에 저장이 된 거
   user.save((err, userInfo)=>{
     if(err) return res.json({success: false, err})
